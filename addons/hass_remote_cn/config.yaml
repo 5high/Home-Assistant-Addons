@@ -8,7 +8,7 @@ panel_title: Hass Remote CN
 panel_icon: mdi:remote-desktop
 slug: hass_remote_cn
 name: Hass_Remote_CN
-description: Remote Access Your Hass from Anywhere
+description: Remote Access Your Hass from Anywhere (中国大陆版本)
 url: https://www.so169.com
 arch:
   - armhf
