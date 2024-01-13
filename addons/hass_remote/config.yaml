@@ -9,7 +9,7 @@ panel_icon: mdi:remote-desktop
 slug: hass_remote
 name: Hass_Remote
 description: Remote Access Your Hass from Anywhere
-url: https://www.so169.com
+url: https://sumju.net
 arch:
   - armhf
   - armv7

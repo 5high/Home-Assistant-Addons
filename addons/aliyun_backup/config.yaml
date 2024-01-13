@@ -1,0 +1,27 @@
+---
+version: 1.0.0
+hassio_api: true
+hassio_role: admin
+ingress: true
+#ingress_port: 8099
+panel_title: Aliyun Backup
+panel_icon: mdi:cloud
+slug: aliyun_backup
+name: Aliyun Drive Backup
+description: Backup Up your Home Assistant to Aliyun Drive
+url: https://sumju.net
+arch:
+  - armhf
+  - armv7
+  - aarch64
+  - amd64
+  - i386
+init: false
+options:
+  max_backups_in_ha: 4,
+  max_backups_in_aliyun_drive: 4,
+  days_between_backups: 3
+schema:
+  max_backups_in_ha: int(0,)?,
+  max_backups_in_aliyun_drive: int(0,)?,
+  days_between_backups: float(0,)?,
