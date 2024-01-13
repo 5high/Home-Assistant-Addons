@@ -5,11 +5,14 @@ FROM $BUILD_FROM
 # Install requirements for add-on
 RUN \
   apk add --no-cache \
-    curl tar wget openssl
+    curl tar wget openssl python3 python3-pip
 
 # Copy data
 COPY data/aliyun.py /
 
+RUN pip install -U aligo \
+    && pip install git+https://github.com/foyoux/aligo.git
+    
 # Setup base
 RUN chmod a+x /aliyun.py
 
