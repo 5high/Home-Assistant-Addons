@@ -1,4 +1,4 @@
-# Home Assistant Add-on: Hass Remote
+# Home Assistant Add-on: Hass Remote CN
 
 Sets up an SSL proxy with Hass Remote and redirects traffic from http port to https port.
 and get a sub domain access your Home Assistant from anywhere~!
@@ -6,7 +6,7 @@ and get a sub domain access your Home Assistant from anywhere~!
 Easy to control your home from outside.
 Easy to build in webhook applications.(eg. OwnTracks, GpsLogger)
 
-出门在外也可控制 Home Assistant
+在中国大陆地区出门在外也可控制 Home Assistant
 轻松接入基于 Webhook 的应用程序（如 OwnTracks, GpsLogger）
 
 ![Supports aarch64 Architecture][aarch64-shield] ![Supports amd64 Architecture][amd64-shield]
