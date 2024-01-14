@@ -8,7 +8,7 @@ RUN \
     curl tar wget openssl python3 python3-pip
 
 # Copy data
-COPY data/aliyun.py /
+COPY data/run.sh /
 
 RUN pip install -U aligo \
     && pip install git+https://github.com/foyoux/aligo.git
@@ -16,4 +16,4 @@ RUN pip install -U aligo \
 # Setup base
 RUN chmod a+x /aliyun.py
 
-CMD [ "python3 /aliyun.py" ]
+CMD [ "/run.sh" ]
