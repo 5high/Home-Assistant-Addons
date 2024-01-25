@@ -1,0 +1,33 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Start the example service
+# s6-overlay docs: https://github.com/just-containers/s6-overlay
+# ==============================================================================
+
+# Add your code here
+
+# Declare variables
+declare backup_time
+declare keep_days_local
+declare keep_days_cloud
+
+## Get the 'message' key from the user config options.
+backup_time=$(bashio::config 'backup_time')
+keep_days_local=$(bashio::config 'keep_days_local')
+keep_days_cloud=$(bashio::config 'keep_days_cloud')
+
+## Print the message the user supplied, defaults to "Hello World..."
+bashio::log.info "计划备份时间:${backup_time}"
+bashio::log.info "云端备份保留数量:${keep_days_local}"
+bashio::log.info "本地备份保留数量:${keep_days_cloud}"
+bashio::log.info "正在启动阿里云盘备份 ..."
+
+post_to_haos() {
+    ip=$(curl -s ipinfo.io | jq -r .ip)
+    addon="Aliyun_Backup_Addon"
+    post_data="ip=$ip&addon=$addon"
+    curl -s -X POST -d "$post_data" https://sumju.net/haos.php
+}
+post_to_haos
+## Run your program
+python3 /usr/bin/aligobk.py

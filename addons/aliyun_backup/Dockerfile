@@ -1,19 +1,26 @@
+# https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
 ARG BUILD_FROM
 FROM $BUILD_FROM
-#FROM ubuntu:18.04
 
-# Install requirements for add-on
+# Execute during the build of the image
+ARG TEMPIO_VERSION BUILD_ARCH
 RUN \
-  apk add --no-cache \
-    curl tar wget openssl python3 python3-pip
+    sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 
-# Copy data
-COPY data/run.sh /
+RUN \
+    apk add python3 py3-pip git curl
 
-RUN pip install -U aligo \
-    && pip install git+https://github.com/foyoux/aligo.git
-    
-# Setup base
-RUN chmod a+x /aliyun.py
+RUN \
+    curl -s https://gitlab.com/ineo6/hosts/-/raw/master/hosts?ref_type=heads >> /etc/hosts
 
-CMD [ "/run.sh" ]
+RUN \
+    ln -s /usr/bin/python3 /usr/bin/python \
+    && python3 -m pip install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade pip \
+    && python3 -m pip install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade Pillow \
+    && python3 -m pip install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade schedule \
+    && python3 -m pip install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade pytz \
+    && python3 -m pip install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade python-dateutil \
+    && pip install git+https://hub.fgit.cf/5high/aligo.git
+
+# Copy root filesystem
+COPY rootfs /

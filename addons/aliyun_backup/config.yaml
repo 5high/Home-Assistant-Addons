@@ -1,15 +1,9 @@
----
-version: 1.0.1
-hassio_api: true
-hassio_role: admin
-ingress: true
-#ingress_port: 8099
-panel_title: Aliyun Backup
-panel_icon: mdi:cloud
+# https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
+name: 阿里云盘自动备份/Aliyun Drive Backup
+version: "1.0.0"
 slug: aliyun_backup
-name: Aliyun Drive Backup
-description: Backup Up your Home Assistant to Aliyun Drive
-url: https://sumju.net
+description: AliyunDrive Backup
+url: "https://sumju.net"
 arch:
   - armhf
   - armv7
@@ -17,11 +11,22 @@ arch:
   - amd64
   - i386
 init: false
+hassio_api: true
+hassio_role: backup
+ingress: true
+panel_icon: "mdi:cloud"
+panel_title: "CN-Backups"
+map:
+  - backup:rw
+  - ssl
 options:
-  max_backups_in_ha: 4,
-  max_backups_in_aliyun_drive: 4,
-  days_between_backups: 3
+  keep_days_local: 7
+  keep_days_cloud: 7
+  backup_time: 03:00:00
+  folder_name: "IT Commander HA Backup"
 schema:
-  max_backups_in_ha: int(0,)?,
-  max_backups_in_aliyun_drive: int(0,)?,
-  days_between_backups: float(0,)?,
+  keep_days_local: "int(1,30)"
+  keep_days_cloud: "int(3,30)"
+  backup_time: str
+  folder_name: str
+#image: "ghcr.io/home-assistant/{arch}-addon-example"

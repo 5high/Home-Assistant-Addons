@@ -1,0 +1,13 @@
+configuration:
+  keep_days_local:
+    name: 本地保存天數
+    description: 您希望保留在本地磁盤的備份數量
+  keep_days_cloud:
+    name: 云盘保存天數
+    description: 您希望保留在阿里云盘的備份數量
+  backup_time:
+    name: 備份上傳時間
+    description: 您希望備份的準確時間 (Eg. 03:00:00)
+folder_name:
+  name: 目標文件夾
+  description: 用來存放備份文件的文件夾名稱，位於網盤根目錄。
