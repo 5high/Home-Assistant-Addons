@@ -36,13 +36,13 @@ _Example add-on to use as a blueprint for new add-ons._
 
 ## Home Assistant Green 优惠卷地址
 
-[Home Assistant Green 40 元优惠卷](https://sumju.net/?p=7943)
-[SkyConnect 20 元优惠卷](https://sumju.net/?p=7943)
+[Home Assistant Green 40 元优惠卷](https://sumju.net/?p=7943)  
+[SkyConnect 20 元优惠卷](https://sumju.net/?p=7943)  
 
 ##
 
-更多教程 :https://sumju.net
-电报 群 :https://t.me/joinchat/J26zVFGMhWWB1sBTFvcjaA
-电报频道 :https://t.me/itcommander
-Twitter :https://twitter.com/itcommander2
-Facebook :https://www.facebook.com/itcommander.itcommander.1
+更多教程 :https://sumju.net  
+电报 群 :https://t.me/joinchat/J26zVFGMhWWB1sBTFvcjaA  
+电报频道 :https://t.me/itcommander  
+Twitter :https://twitter.com/itcommander2  
+Facebook :https://www.facebook.com/itcommander.itcommander.1  
