@@ -21,16 +21,16 @@ _Example add-on to use as a blueprint for new add-ons._
 ## 使用方法
 
 1. 在插件库的右上角选择添加: https://github.com/5high/Home-Assistant-Addons
-   ![Aliyun Image](../images/add.png)
+   ![Aliyun Image](https://raw.fgit.cf/5high/Home-Assistant-Addons/main/addons/images/add.png)
 2. 选择 Aliyun Drive Backup 点击安装
-   ![Aliyun Image](../images/install.png)
+   ![Aliyun Image](https://raw.fgit.cf/5high/Home-Assistant-Addons/main/addons/images/install.png)
 3. 设置备份计划和备份目录名称后启动插件
-   ![Aliyun Image](../images/1.png)
-   ![Aliyun Image](../images/2.png)
+   ![Aliyun Image](https://raw.fgit.cf/5high/Home-Assistant-Addons/main/addons/images/1.png)
+   ![Aliyun Image](https://raw.fgit.cf/5high/Home-Assistant-Addons/main/addons/images/2.png)
 4. 左侧菜单选择 CN-Backup 使用阿里云盘手机 app 完成扫码登录。
-   ![Aliyun Image](../images/scan.png)
+   ![Aliyun Image](https://raw.fgit.cf/5high/Home-Assistant-Addons/main/addons/images/scan.png)
 5. 完成并等待定时备份到阿里云盘
-   ![Aliyun Image](../images/aliyun.png)
+   ![Aliyun Image](https://raw.fgit.cf/5high/Home-Assistant-Addons/main/addons/images/aliyun.png)
 
 ## 本插件登录后无需干预自动执行每日签到
 
