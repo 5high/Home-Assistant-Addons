@@ -16,7 +16,7 @@ _Example add-on to use as a blueprint for new add-ons._
 
 # 阿里云盘每日自动备份插件 / Aliyun Drive Daily Backup
 
-![Aliyun Image]（https://raw.fgit.cf/5high/Home-Assistant-Addons/main/addons/images/aliyun.png）
+![Aliyun Image](https://raw.fgit.cf/5high/Home-Assistant-Addons/main/addons/images/aliyun.png)
 
 ## 使用方法
 
