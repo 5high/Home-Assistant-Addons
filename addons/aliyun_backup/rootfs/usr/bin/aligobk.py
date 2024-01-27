@@ -157,7 +157,6 @@ from http.server import SimpleHTTPRequestHandler, HTTPServer
 sys.stdout.flush()
 
 config= '/data/'
-#config= '/Users/marcozhang/Documents/'
 set_config_folder(config)
 
 # 创建一个格式化程序
@@ -426,6 +425,7 @@ def get_free_space():
 def restart_program():
     python = sys.executable
     os.execl(python, python, *sys.argv)
+    create_threa_afterlogin()
 
 def check_internet():
     url_to_check = "https://www.baidu.com"
