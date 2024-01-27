@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 name: 阿里云盘自动备份/Aliyun Drive Backup
-version: "1.0.0"
+version: "1.0.1"
 slug: aliyun_backup
 description: AliyunDrive Backup
 url: "https://sumju.net"
