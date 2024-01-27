@@ -423,9 +423,7 @@ def get_free_space():
     return remaining_space
 
 def restart_program():
-    python = sys.executable
-    os.execl(python, python, *sys.argv)
-    create_threa_afterlogin()
+    os.system("reboot")
 
 def check_internet():
     url_to_check = "https://www.baidu.com"
