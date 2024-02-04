@@ -376,6 +376,7 @@ global phone
 global space
 global folderid
 global drive_id
+global supervisor_token
 
 lock = threading.Lock()
 
@@ -584,6 +585,8 @@ def simulate_backup():
 
 def running_schedule():
     while True:
+        global supervisor_token
+        supervisor_token = os.environ.get("SUPERVISOR_TOKEN")
         schedule.run_pending()
         time.sleep(1)
 
