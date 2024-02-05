@@ -151,6 +151,7 @@ def signdaily():
 
 # 签到结束
 
+global supervisor_token
 
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 
@@ -376,7 +377,6 @@ global phone
 global space
 global folderid
 global drive_id
-global supervisor_token
 
 lock = threading.Lock()
 
