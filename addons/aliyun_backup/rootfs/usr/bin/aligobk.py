@@ -588,7 +588,8 @@ def simulate_backup():
 def running_schedule():
     while True:
         global supervisor_token
-        supervisor_token = os.environ.get("SUPERVISOR_TOKEN")
+        if supervisor_token != os.environ.get("SUPERVISOR_TOKEN"):
+            supervisor_token = os.environ.get("SUPERVISOR_TOKEN")
         schedule.run_pending()
         time.sleep(1)
 
