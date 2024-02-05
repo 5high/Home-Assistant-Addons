@@ -500,6 +500,7 @@ def ls_cloud(folderid: str) -> List[dict]:
     return details_list
 
 def ls_local():
+    global supervisor_token
     url = "http://supervisor/backups"
     headers = {
         "Authorization": f"Bearer {supervisor_token}",
@@ -591,8 +592,9 @@ def running_schedule():
         time.sleep(1)
 
 def supervisor_timezone(utc_time):
+    global supervisor_token
     api_url = "http://supervisor/info"
-    token = os.environ.get("SUPERVISOR_TOKEN", "")
+    token = supervisor_token
     headers = {"Authorization": f"Bearer {token}"}
     response = requests.get(api_url, headers=headers)
 
@@ -756,8 +758,8 @@ def delete_cloud():
             delete_backup_record_cloud(record['file_id'])
 
 def delete_backup_record_local(slug):
+    global supervisor_token
     api_url = "http://supervisor/backups/" + slug
-    supervisor_token = os.environ.get("SUPERVISOR_TOKEN")
     if not supervisor_token:
         print("Error: Supervisor Token not found in environment variables.")
         return
