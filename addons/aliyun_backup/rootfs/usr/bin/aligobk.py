@@ -196,6 +196,7 @@ def generate_html_listcloud():
             body {
                 font-family: Arial, sans-serif;
                 margin: 20px;
+                background-color: white;
             }
             h1 {
                 text-align: center;
