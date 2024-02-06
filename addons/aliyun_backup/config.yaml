@@ -29,4 +29,4 @@ schema:
   keep_days_cloud: "int(3,30)"
   backup_time: str
   folder_name: str
-#image: "ghcr.io/home-assistant/{arch}-addon-example"
+image: "ghcr.io/5high/{arch}-addon-aliyun-backup"
