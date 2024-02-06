@@ -22,4 +22,4 @@ jobs:
           args: |
             --all \
             --target addons/hass_remote \
-            --docker-hub ghcr.io/5high/Home-Assistant-Addons
+            --docker-hub ghcr.io/5high
