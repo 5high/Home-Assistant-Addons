@@ -1,4 +1,4 @@
-name: "Publish Hass Remote"
+name: "Publish Hass Remote CN"
 
 on:
   release:

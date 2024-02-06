@@ -1,4 +1,4 @@
-name: "Publish Hass Remote CN"
+name: "Publish Hass Remote"
 
 on:
   release:
@@ -22,18 +22,4 @@ jobs:
           args: |
             --all \
             --target addons/hass_remote \
-            --docker-hub ghcr.io/5high
-
-      - uses: home-assistant/builder@master
-        with:
-          args: |
-            --all \
-            --target addons/hass_remote_cn \
-            --docker-hub ghcr.io/5high
-
-      - uses: home-assistant/builder@master
-        with:
-          args: |
-            --all \
-            --target addons/aliyun_backup \
             --docker-hub ghcr.io/5high
