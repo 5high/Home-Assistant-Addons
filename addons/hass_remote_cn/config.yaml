@@ -4,7 +4,7 @@ hassio_api: true
 hassio_role: default
 ingress: true
 #ingress_port: 8099
-panel_title: 远程访问插件大陆版/Hass Remote CN
+panel_title: Hass Remote CN
 panel_icon: mdi:remote-desktop
 slug: hass_remote_cn
 name: Hass_Remote_CN
