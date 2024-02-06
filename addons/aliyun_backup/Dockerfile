@@ -11,7 +11,7 @@ RUN \
 RUN \
     ln -s /usr/bin/python3 /usr/bin/python \
     && python3 -m pip install --upgrade pip \
-    && python3 -m pip install --only-binary Pillow Pillow \
+    && python3 -m pip install --upgrade Pillow \
     && python3 -m pip install --upgrade schedule \
     && python3 -m pip install --upgrade pytz \
     && python3 -m pip install --upgrade python-dateutil \
