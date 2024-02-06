@@ -16,9 +16,9 @@ arch:
   - aarch64
   - amd64
   - i386
-#image: homeassistant/{arch}-addon-nginx_proxy
 init: false
 options:
   key: "xxxxxxxxxxxxxxxx"
 schema:
   key: str
+image: "ghcr.io/5high/{arch}-addon-hass-remote"
