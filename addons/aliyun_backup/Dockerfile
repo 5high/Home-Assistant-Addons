@@ -4,19 +4,17 @@ FROM $BUILD_FROM
 
 # Execute during the build of the image
 ARG TEMPIO_VERSION BUILD_ARCH
-RUN \
-    sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 
 RUN \
     apk add python3 py3-pip git curl
 
 RUN \
     ln -s /usr/bin/python3 /usr/bin/python \
-    && python3 -m pip install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade pip \
-    && python3 -m pip install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade Pillow \
-    && python3 -m pip install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade schedule \
-    && python3 -m pip install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade pytz \
-    && python3 -m pip install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade python-dateutil \
+    && python3 -m pip install --upgrade pip \
+    && python3 -m pip install --upgrade Pillow \
+    && python3 -m pip install --upgrade schedule \
+    && python3 -m pip install --upgrade pytz \
+    && python3 -m pip install --upgrade python-dateutil \
     && pip install git+https://github.com/5high/aligo.git
 
 # Copy root filesystem
