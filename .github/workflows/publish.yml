@@ -24,7 +24,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Publish build - Home Assistant builder
-        uses: home-assistant/builder@2022.11.0
+        uses: home-assistant/builder@master
         with:
           args: |
             --${{matrix.target}} \
