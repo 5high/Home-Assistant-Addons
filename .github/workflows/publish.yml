@@ -21,6 +21,5 @@ jobs:
         with:
           args: |
             --all \
-            -d \
             --target addons/hass_remote \
             --docker-hub ghcr.io/5high
