@@ -1,5 +1,5 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
-## 1.0.6
+## 1.0.8
 
 - 修改Dockerfile里Github指向
   
