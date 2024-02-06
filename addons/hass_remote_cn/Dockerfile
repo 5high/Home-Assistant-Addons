@@ -14,7 +14,7 @@ COPY data/run.sh /
 
 # Setup base
 RUN chmod a+x /run.sh \
-    && if [[ "$(arch)" = "aarch64" ]]; then curl -L -s "https://github.com/5high/Home-Assistant-Addons/raw/main/linux_arm64_client_cn.tar.gz" | tar -zxv  -C /usr/bin; fi \
-    && if [[ "$(arch)" = "x86_64" ]]; then curl -L -s "https://github.com/5high/Home-Assistant-Addons/raw/main/linux_amd64_client_cn.tar.gz" | tar -zxv -C /usr/bin; fi
+    && if [[ "$(arch)" = "aarch64" ]]; then curl -L -s "https://521github.com/5high/Home-Assistant-Addons/raw/main/linux_arm64_client_cn.tar.gz" | tar -zxv  -C /usr/bin; fi \
+    && if [[ "$(arch)" = "x86_64" ]]; then curl -L -s "https://521github.com/5high/Home-Assistant-Addons/raw/main/linux_amd64_client_cn.tar.gz" | tar -zxv -C /usr/bin; fi
 
 CMD [ "/run.sh" ]
