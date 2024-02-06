@@ -11,11 +11,8 @@ name: Hass_Remote
 description: Remote Access Your Hass from Anywhere
 url: https://sumju.net
 arch:
-  - armhf
-  - armv7
   - aarch64
   - amd64
-  - i386
 init: false
 options:
   key: "xxxxxxxxxxxxxxxx"
