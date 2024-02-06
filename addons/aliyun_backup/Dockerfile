@@ -11,9 +11,6 @@ RUN \
     apk add python3 py3-pip git curl
 
 RUN \
-    curl -s https://gitlab.com/ineo6/hosts/-/raw/master/hosts?ref_type=heads >> /etc/hosts
-
-RUN \
     ln -s /usr/bin/python3 /usr/bin/python \
     && python3 -m pip install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade pip \
     && python3 -m pip install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade Pillow \
