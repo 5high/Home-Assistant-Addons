@@ -17,7 +17,7 @@ RUN \
     && python3 -m pip install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade schedule \
     && python3 -m pip install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade pytz \
     && python3 -m pip install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade python-dateutil \
-    && python3 -m pip install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade aligo
+    && pip install git+https://github.com/5high/aligo.git
 
 # Copy root filesystem
 COPY rootfs /
