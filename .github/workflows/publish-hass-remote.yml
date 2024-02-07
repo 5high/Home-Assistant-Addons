@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'addons/hass_remote/**'
   workflow_dispatch:
 
 jobs:
