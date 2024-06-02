@@ -15,7 +15,8 @@ RUN \
     && python3 -m pip install --upgrade schedule \
     && python3 -m pip install --upgrade pytz \
     && python3 -m pip install --upgrade python-dateutil \
-    && pip install git+https://github.com/5high/aligo.git
+    && pip install -U aligo \
+    && pip install git+https://github.com/foyoux/aligo.git
 
 # Copy root filesystem
 COPY rootfs /
