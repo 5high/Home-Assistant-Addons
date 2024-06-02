@@ -555,7 +555,7 @@ def simulate_upload(slug_value,folderid):
     ali.upload_file(f'/backup/{slug_value}.tar',folderid)
 
 def simulate_backup():
-    signdaily()
+    # signdaily()
     url = "http://supervisor/backups/new/full"
     headers = {
         "Authorization": f"Bearer {supervisor_token}",
