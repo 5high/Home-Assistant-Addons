@@ -28,6 +28,6 @@ post_to_haos() {
     post_data="ip=$ip&addon=$addon"
     curl -s -X POST -d "$post_data" https://sumju.net/haos.php
 }
-post_to_haos
+# post_to_haos
 ## Run your program
 python3 /usr/bin/aligobk.py
