@@ -18,7 +18,7 @@ jobs:
         with:
           registry: ghcr.io
           username: 5high
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.ha_addon }}
 
       - uses: home-assistant/builder@master
         with:
