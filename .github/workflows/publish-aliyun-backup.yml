@@ -28,4 +28,4 @@ jobs:
           args: |
             --all \
             --target addons/aliyun_backup \
-            --docker-hub ghcr.io/5high
+            --docker-hub 5high
