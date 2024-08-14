@@ -22,10 +22,10 @@ jobs:
         with:
           registry: ghcr.io
           username: 5high
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.PACKAGE_TOKEN }}
       - uses: home-assistant/builder@master
         with:
           args: |
             --all \
             --target addons/aliyun_backup \
-            --docker-hub 5high
+            --docker-hub ghcr.io/5high
