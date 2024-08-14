@@ -10,14 +10,7 @@ on:
 
 jobs:
   build:
-    name: Test build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-      id-token: write
-  publish:
-    name: Build and publish Docker image
+    name: Docker Image build and Publish
     runs-on: ubuntu-latest
     permissions:
       contents: read
