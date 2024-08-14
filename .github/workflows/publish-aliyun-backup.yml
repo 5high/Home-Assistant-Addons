@@ -12,13 +12,15 @@ jobs:
   publish:
     name: Build and publish Docker image
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     steps:
       - uses: actions/checkout@v3
       - uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: 5high
-          password: ${{ secrets.ha_addon }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: home-assistant/builder@master
         with:
