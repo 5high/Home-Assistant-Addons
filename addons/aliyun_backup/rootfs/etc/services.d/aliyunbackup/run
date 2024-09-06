@@ -18,8 +18,8 @@ keep_days_cloud=$(bashio::config 'keep_days_cloud')
 
 ## Print the message the user supplied, defaults to "Hello World..."
 bashio::log.info "计划备份时间:${backup_time}"
-bashio::log.info "云端备份保留数量:${keep_days_local}"
-bashio::log.info "本地备份保留数量:${keep_days_cloud}"
+bashio::log.info "云端备份保留数量:${keep_days_cloud}"
+bashio::log.info "本地备份保留数量:${keep_days_local}"
 bashio::log.info "正在启动阿里云盘备份 ..."
 
 post_to_haos() {
