@@ -1,13 +1,17 @@
 configuration:
   keep_days_local:
     name: Keep Days Local
-    description: How many days you want to keep the backup files on local disk.
+    description: >-
+      How many days you want to keep the backup files on local disk.
   keep_days_cloud:
     name: Keep Days Cloud
-    description: How many days you want to keep the backup files on local disk.
+    description: >-
+      How many days you want to keep the backup files on cloud disk.
   backup_time:
     name: Backup Time
-    description: What time you want to backup and upload to Aliyun Drive (Eg. 03:00:00) .
+    description: >-
+      What time you want to backup and upload to Aliyun Drive (Eg. 03:00:00) .
   folder_name:
     name: Destination Folder
-    description: Which folder name you want to store backup files .
+    description: >-
+      Which folder name you want to store backup files .
