@@ -738,6 +738,7 @@ def create_threa_afterlogin():
 
 def filter_and_print_date(records, key_name, num_to_keep):
     sorted_records = sorted(records, key=itemgetter('date'), reverse=True)
+    to_print = []  # 初始化为一个空列表
     if len(sorted_records) > num_to_keep:
         to_print = sorted_records[num_to_keep:]
     return to_print
