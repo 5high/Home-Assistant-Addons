@@ -29,5 +29,16 @@ post_to_haos() {
     curl -s -X POST -d "$post_data" https://sumju.net/haos.php
 }
 # post_to_haos
-## Run your program
-python3 /usr/bin/aligobk.py
+
+## Prepare writable data dirs, then drop root before running the app (C3).
+## /data is provided by Supervisor as a bind mount; chown here so the
+## unprivileged user can keep aligo's token/config and login QR png in it.
+mkdir -p /data
+chown -R nobody:nogroup /data || bashio::log.warning "chown /data failed"
+
+## HOME must point into /data: aligo creates $HOME/.aligo at import time,
+## which would fail once the process is demoted to nobody.
+export HOME=/data
+
+## Run your program as unprivileged user
+exec s6-setuidgid nobody python3 /usr/bin/aligobk.py

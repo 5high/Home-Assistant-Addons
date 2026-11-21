@@ -440,11 +440,13 @@ def check_internet():
 def check_space_periodically():
     global space
     while True:
-        space = get_remaining_space()
-        if space is not None:
-            pass
-        else:
-            restart_program()
+        # C4: 任何一次瞬时 API 错误都不能杀死本线程，否则空间检查静默停摆
+        try:
+            space = get_remaining_space()
+            if space is None:
+                restart_program()
+        except Exception:
+            logging.getLogger().exception("check_space_periodically iteration failed, will retry")
         time.sleep(30)
 
 class BaseFile:
@@ -507,25 +509,33 @@ def ls_local():
         "Authorization": f"Bearer {supervisor_token}",
         "Content-Type": "application/json"
     }
-    response = requests.get(url, headers=headers)
-    if response.status_code == 200:
-        try:
-            data = response.json()
-            backups = data.get("data", {}).get("backups", [])
+    # C4: 永不返回 None —— 非 200 / 网络异常时记日志并返回空列表，
+    # 避免下游 TypeError 杀死调用线程。
+    try:
+        response = requests.get(url, headers=headers, timeout=30)
+    except requests.RequestException as e:
+        logging.getLogger().error("ls_local: supervisor request failed: %s", e)
+        return []
+    if response.status_code != 200:
+        logging.getLogger().error("ls_local: unexpected status code %s", response.status_code)
+        return []
+    try:
+        data = response.json()
+        backups = data.get("data", {}).get("backups", [])
 
-            result = []
-            for backup in backups:
-                backup_info = {
-                    "name": backup.get("name", ""),
-                    "slug": backup.get("slug", ""),
-                    "date": backup.get("date", "")
-                }
-                result.append(backup_info)
+        result = []
+        for backup in backups:
+            backup_info = {
+                "name": backup.get("name", ""),
+                "slug": backup.get("slug", ""),
+                "date": backup.get("date", "")
+            }
+            result.append(backup_info)
 
-            return result
-        except json.JSONDecodeError as e:
-            print(f"Error decoding JSON: {e}")
-            return []
+        return result
+    except json.JSONDecodeError as e:
+        logging.getLogger().error("Error decoding JSON: %s", e)
+        return []
 
 # 差集
 def get_specific_difference(A, B, key_a, key_b):
@@ -587,10 +597,15 @@ def simulate_backup():
 
 def running_schedule():
     while True:
-        global supervisor_token
-        if supervisor_token != os.environ.get("SUPERVISOR_TOKEN"):
-            supervisor_token = os.environ.get("SUPERVISOR_TOKEN")
-        schedule.run_pending()
+        # C4: 调度线程必须对每轮异常免疫并记录日志，否则一次瞬时 API 错误
+        # 就会永久杀死每日备份且零告警（插件核心功能失效头号根因）。
+        try:
+            global supervisor_token
+            if supervisor_token != os.environ.get("SUPERVISOR_TOKEN"):
+                supervisor_token = os.environ.get("SUPERVISOR_TOKEN")
+            schedule.run_pending()
+        except Exception:
+            logging.getLogger().exception("running_schedule iteration failed, scheduler stays alive")
         time.sleep(1)
 
 def supervisor_timezone(utc_time):
@@ -710,21 +725,33 @@ def loginprocess():
             print(datetime.now().strftime('%Y-%m-%d %H:%M:%S')+" Login success ... ")
             break
 
-    while True:
-        if user is not None:
-            break
-        else:
-            if user_thread.is_alive():
-                httpd = HTTPServer(('0.0.0.0',8099), MyRequestHandler)
-                http_thread = threading.Thread(target=httpd.serve_forever, name="Addon-Web", daemon=True)
-                http_thread.start()
-                print(datetime.now().strftime('%Y-%m-%d %H:%M:%S')+" Waittting for scan qrcode ... ")
-                user_thread.join()
-                if httpd:
-                    httpd.server_close()
-                    httpd.shutdown()
-                    http_thread.join()
-                    restart_program()
+    # C5: 等待扫码期间必须 sleep，否则二维码过期后忙等自旋打满 CPU；
+    # 同时加间隔上限，超时后报错退出（由 s6 finish 决定重启/停机）。
+    WAIT_INTERVAL = 2.0
+    max_wait_seconds = int(os.environ.get("LOGIN_WAIT_TIMEOUT", "3600"))
+    waited = 0.0
+    while user is None:
+        if not user_thread.is_alive():
+            # 扫码线程已退出仍未登录（如二维码过期）：重建线程重试
+            print(datetime.now().strftime('%Y-%m-%d %H:%M:%S')+" Login thread exited without success, restarting login ... ")
+            user_thread = threading.Thread(target=get_user_info, name="UserThread", daemon=True)
+            user_thread.start()
+        httpd = HTTPServer(('0.0.0.0', 8099), MyRequestHandler)
+        http_thread = threading.Thread(target=httpd.serve_forever, name="Addon-Web", daemon=True)
+        http_thread.start()
+        print(datetime.now().strftime('%Y-%m-%d %H:%M:%S')+" Waittting for scan qrcode ... ")
+        while user is None and user_thread.is_alive():
+            time.sleep(WAIT_INTERVAL)
+            waited += WAIT_INTERVAL
+            if waited >= max_wait_seconds:
+                httpd.shutdown()
+                httpd.server_close()
+                raise RuntimeError(
+                    f"Login QR code not scanned within {max_wait_seconds}s, giving up.")
+        httpd.shutdown()
+        httpd.server_close()
+        http_thread.join(timeout=10)
+    print(datetime.now().strftime('%Y-%m-%d %H:%M:%S')+" Login success ... ")
 
 def create_threa_afterlogin():
     # 创建循环检查云盘空间线程
